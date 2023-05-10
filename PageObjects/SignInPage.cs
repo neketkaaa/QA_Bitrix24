@@ -14,12 +14,14 @@ namespace ATframework3demo.PageObjects
 
         public SignInPage inputLogin(Account newResident)
         {
+            // ввод логина
             new WebItem("//input[@name='login']", "Ввод в поле Логин").SendKeys(newResident.Login);
             return new SignInPage();
         }
 
         public SignInPage inputPassword(Account newResident)
         {
+            // ввод пароля
             new WebItem("//input[@name='password']", "Ввод в поле Пароль").SendKeys(newResident.Password);
             return new SignInPage();
         }

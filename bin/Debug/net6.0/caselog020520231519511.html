@@ -1,0 +1,35 @@
+<!DOCTYPE html><div style="color: #000000">[02.05.2023 03:19:51.163][INFO] ---------------Запуск кейса 'Авторизация по ссылке-приглашению'---------------</div>
+<div style="color: #000000">[02.05.2023 03:19:51.165][INFO] OpenUri: http://bitrix.project/</div>
+<div style="color: #000000">[02.05.2023 03:19:53.963][INFO] Ожидание отображения элемента 'Поле для ввода логина' локаторы: //input[@name='login']</div>
+<div style="color: #000000">[02.05.2023 03:19:54.001][INFO] Ввод текста 'admin' в элемент: 'Поле для ввода логина' локаторы: //input[@name='login']</div>
+<div style="color: #000000">[02.05.2023 03:19:55.109][INFO] Ожидание отображения элемента 'Поле для ввода логина' локаторы: //input[@name='login']</div>
+<div style="color: #000000">[02.05.2023 03:19:55.124][INFO] Ввод текста '' в элемент: 'Поле для ввода логина' локаторы: //input[@name='login']</div>
+<div style="color: #000000">[02.05.2023 03:19:55.153][INFO] Ожидание отображения элемента 'Поле для ввода пароля' локаторы: //input[@name='password']</div>
+<div style="color: #000000">[02.05.2023 03:19:55.174][INFO] Ввод текста [логирование отключено] в элемент: 'Поле для ввода пароля' локаторы: //input[@name='password']</div>
+<div style="color: #000000">[02.05.2023 03:19:56.214][INFO] Ожидание отображения элемента 'Поле для ввода пароля' локаторы: //input[@name='password']</div>
+<div style="color: #000000">[02.05.2023 03:19:56.226][INFO] Ввод текста '' в элемент: 'Поле для ввода пароля' локаторы: //input[@name='password']</div>
+<div style="color: #000000">[02.05.2023 03:19:58.327][INFO] Ожидание отображения элемента 'Ссылка на дом TestHouse' локаторы: //a[@href='/house/testhouse/about']</div>
+<div style="color: #000000">[02.05.2023 03:19:58.354][INFO] Click: 'Ссылка на дом TestHouse' локаторы: //a[@href='/house/testhouse/about']</div>
+<div style="color: #000000">[02.05.2023 03:19:59.279][INFO] Ожидание появления кнопки получения ссылки</div>
+<div style="color: #000000">[02.05.2023 03:19:59.280][INFO] Наведение курсора мыши: 'Клик по кнопке Получить ссылку' локаторы: //button[@onclick="generateLink(event)"]</div>
+<div style="color: #000000">[02.05.2023 03:19:59.614][INFO] Ожидание отображения элемента 'Клик по кнопке Получить ссылку' локаторы: //button[@onclick="generateLink(event)"]</div>
+<div style="color: #000000">[02.05.2023 03:19:59.627][INFO] SwitchToFrame: 'Фрейм списка домов' локаторы: //iframe[@id='main-grid-tmp-frame-apartment_list']</div>
+<div style="color: #000000">[02.05.2023 03:19:59.648][INFO] Ожидание отображения элемента 'Клик по кнопке Получить ссылку' локаторы: //button[@onclick="generateLink(event)"]</div>
+<div style="color: #000000">[02.05.2023 03:20:05.921][INFO] Достигнут таймаут ожидания</div>
+<div style="color: #000000">[02.05.2023 03:20:05.923][INFO] Click: 'Клик по кнопке Получить ссылку' локаторы: //button[@onclick="generateLink(event)"]</div>
+<div style="color: #FF0000">[02.05.2023 03:20:16.047][ERROR] Кейс не пройден, причина:</div>
+<div style="color: #FF0000">OpenQA.Selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//button[@onclick="generateLink(event)"]"}</div>
+<div style="color: #FF0000">(Session info: chrome=112.0.5615.138)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.WebDriver.UnpackAndThrowOnError(Response errorResponse, String commandToExecute)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.WebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.WebDriver.FindElement(String mechanism, String value)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.By.<.ctor>b__11_0(ISearchContext context)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.By.FindElement(ISearchContext context)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.WebDriver.FindElement(By by)</div>
+<div style="color: #FF0000">at atFrameWork2.SeleniumFramework.WebItem.Execute(Action`2 seleniumCode, IWebDriver driver, Boolean throwAtDebug) in C:\Users\nikita\Desktop\qa bitrix\autotest\BitrixQAautomationLearning2023-master\BitrixQAautomationLearning2023-master\ATlearning\ATframework3demo\SeleniumFramework\WebItem.cs:line 298</div>
+<div style="color: #FF0000">at atFrameWork2.SeleniumFramework.WebItem.Click(IWebDriver driver) in C:\Users\nikita\Desktop\qa bitrix\autotest\BitrixQAautomationLearning2023-master\BitrixQAautomationLearning2023-master\ATlearning\ATframework3demo\SeleniumFramework\WebItem.cs:line 50</div>
+<div style="color: #FF0000">at ATframework3demo.PageObjects.AboutHousePage.GetLink() in C:\Users\nikita\Desktop\qa bitrix\autotest\BitrixQAautomationLearning2023-master\BitrixQAautomationLearning2023-master\ATlearning\ATframework3demo\PageObjects\AboutHousePage.cs:line 20</div>
+<div style="color: #FF0000">at ATframework3demo.TestCases.Case_HouseCeeper_Auth.AuthByKey(PortalHomePage homePage) in C:\Users\nikita\Desktop\qa bitrix\autotest\BitrixQAautomationLearning2023-master\BitrixQAautomationLearning2023-master\ATlearning\ATframework3demo\TestCases\Case_HouseCeeper_Auth.cs:line 29</div>
+<div style="color: #FF0000">at ATframework3demo.TestCases.Case_HouseCeeper_Auth.<GetCases>b__0_0(PortalHomePage homePage) in C:\Users\nikita\Desktop\qa bitrix\autotest\BitrixQAautomationLearning2023-master\BitrixQAautomationLearning2023-master\ATlearning\ATframework3demo\TestCases\Case_HouseCeeper_Auth.cs:line 14</div>
+<div style="color: #FF0000">at atFrameWork2.BaseFramework.TestCase.Execute(PortalInfo testPortal, Action uiRefresher) in C:\Users\nikita\Desktop\qa bitrix\autotest\BitrixQAautomationLearning2023-master\BitrixQAautomationLearning2023-master\ATlearning\ATframework3demo\BaseFramework\TestCase.cs:line 47</div>
+<div style="color: #000000">[02.05.2023 03:20:16.048][INFO] ---------------Кейс 'Авторизация по ссылке-приглашению' завершён---------------</div>

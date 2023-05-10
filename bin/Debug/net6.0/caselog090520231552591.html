@@ -1,0 +1,30 @@
+<!DOCTYPE html><div style="color: #000000">[09.05.2023 03:52:59.619][INFO] ---------------Запуск кейса 'Назначение пользователя с правами жильца председателем'---------------</div>
+<div style="color: #000000">[09.05.2023 03:52:59.621][INFO] OpenUri: http://bitrix.project/</div>
+<div style="color: #000000">[09.05.2023 03:53:02.932][INFO] Ожидание отображения элемента 'Поле для ввода логина' локаторы: //input[@name='login']</div>
+<div style="color: #000000">[09.05.2023 03:53:02.961][INFO] Ввод текста 'admin' в элемент: 'Поле для ввода логина' локаторы: //input[@name='login']</div>
+<div style="color: #000000">[09.05.2023 03:53:04.027][INFO] Ожидание отображения элемента 'Поле для ввода пароля' локаторы: //input[@name='password']</div>
+<div style="color: #000000">[09.05.2023 03:53:04.044][INFO] Ввод текста [логирование отключено] в элемент: 'Поле для ввода пароля' локаторы: //input[@name='password']</div>
+<div style="color: #000000">[09.05.2023 03:53:05.104][INFO] Ожидание отображения элемента 'Кнопка Авторизоваться' локаторы: //button[@type="submit"]</div>
+<div style="color: #000000">[09.05.2023 03:53:05.120][INFO] Ввод текста '' в элемент: 'Кнопка Авторизоваться' локаторы: //button[@type="submit"]</div>
+<div style="color: #000000">[09.05.2023 03:53:07.951][INFO] Ожидание отображения элемента 'Ссылка на дом TESTHOUSENEW' локаторы: //a[@href='/house/newtesthouse/about']</div>
+<div style="color: #000000">[09.05.2023 03:53:07.979][INFO] Click: 'Ссылка на дом TESTHOUSENEW' локаторы: //a[@href='/house/newtesthouse/about']</div>
+<div style="color: #000000">[09.05.2023 03:53:08.989][INFO] Ожидание отображения элемента 'Область грида со списком жильцов' локаторы: //div[@class="main-grid main-grid-full"]</div>
+<div style="color: #000000">[09.05.2023 03:53:09.022][INFO] Наведение курсора мыши: 'Область грида со списком жильцов' локаторы: //div[@class="main-grid main-grid-full"]</div>
+<div style="color: #000000">[09.05.2023 03:53:09.360][INFO] Ожидание отображения элемента 'Клик по кнопке Сделать председателем' локаторы: //*[contains(text(), 'imonly test')]//..//a[contains(@href, "add-headman")]</div>
+<div style="color: #000000">[09.05.2023 03:53:09.376][INFO] Click: 'Клик по кнопке Сделать председателем' локаторы: //*[contains(text(), 'imonly test')]//..//a[contains(@href, "add-headman")]</div>
+<div style="color: #FF0000">[09.05.2023 03:53:20.919][ERROR] Кейс не пройден, причина:</div>
+<div style="color: #FF0000">OpenQA.Selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//*[contains(text(), 'imonly test')]//..//a[contains(@href, "remove-headman")]"}</div>
+<div style="color: #FF0000">(Session info: chrome=112.0.5615.140)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.WebDriver.UnpackAndThrowOnError(Response errorResponse, String commandToExecute)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.WebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.WebDriver.FindElement(String mechanism, String value)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.By.<.ctor>b__11_0(ISearchContext context)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.By.FindElement(ISearchContext context)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.WebDriver.FindElement(By by)</div>
+<div style="color: #FF0000">at atFrameWork2.SeleniumFramework.WebItem.Execute(Action`2 seleniumCode, IWebDriver driver, Boolean throwAtDebug) in C:\Users\nikita\Desktop\qa bitrix\проектная работа\3 этап Автотесты\ATlearning\ATframework3demo\SeleniumFramework\WebItem.cs:line 298</div>
+<div style="color: #FF0000">at atFrameWork2.SeleniumFramework.WebItem.InnerText(IWebDriver driver) in C:\Users\nikita\Desktop\qa bitrix\проектная работа\3 этап Автотесты\ATlearning\ATframework3demo\SeleniumFramework\WebItem.cs:line 201</div>
+<div style="color: #FF0000">at ATframework3demo.PageObjects.AboutHousePage.ButtonTextCheck(Account resident, String expectedText, String todo) in C:\Users\nikita\Desktop\qa bitrix\проектная работа\3 этап Автотесты\ATlearning\ATframework3demo\PageObjects\AboutHousePage.cs:line 112</div>
+<div style="color: #FF0000">at ATframework3demo.TestCases.Case_HouseCeeper_HouseHeadman.MakingUserAdmin(PortalHomePage homePage) in C:\Users\nikita\Desktop\qa bitrix\проектная работа\3 этап Автотесты\ATlearning\ATframework3demo\TestCases\Case_HouseCeeper_HouseHeadman.cs:line 37</div>
+<div style="color: #FF0000">at ATframework3demo.TestCases.Case_HouseCeeper_HouseHeadman.<GetCases>b__0_0(PortalHomePage homePage) in C:\Users\nikita\Desktop\qa bitrix\проектная работа\3 этап Автотесты\ATlearning\ATframework3demo\TestCases\Case_HouseCeeper_HouseHeadman.cs:line 18</div>
+<div style="color: #FF0000">at atFrameWork2.BaseFramework.TestCase.Execute(PortalInfo testPortal, Action uiRefresher) in C:\Users\nikita\Desktop\qa bitrix\проектная работа\3 этап Автотесты\ATlearning\ATframework3demo\BaseFramework\TestCase.cs:line 47</div>
+<div style="color: #000000">[09.05.2023 03:53:20.920][INFO] ---------------Кейс 'Назначение пользователя с правами жильца председателем' завершён---------------</div>

@@ -39,7 +39,7 @@ namespace ATframework3demo.TestCases
         {
             var houseData = new House("TESTHOUSENEW", "", "newtesthouse", 31, "test adress"); // тестовый дом
             HouseList houseList = new HouseList();
-            DateTime now = DateTime.Now;                                        //
+            DateTime now = DateTime.Now;                                         //
             string currentDay = now.ToString("dd");                              // подготовка к генерации тестовых данных
             if (currentDay[0] == '0') currentDay = currentDay.Remove('0');       //
             // Перейти к Редактировать
@@ -49,90 +49,84 @@ namespace ATframework3demo.TestCases
             houseCard.GetLink();
             // Проверить без ввода - ошибка
             bool isGetErrorPresent = houseCard.IsGetErrorPresent();
-            
-            if (!isGetErrorPresent)
-            {
-                Log.Error("Не появилась ошибка при получении ссылки-приглашения без ввода номера квартиры");
-            }
-            else
-            {   
-                // Ввести номер квартиры
-                string keyLink = houseCard
-                    .SetNumberForLink(currentDay)
+
+
+
+            // Ввести номер квартиры
+            string keyLink = houseCard
+                .SetNumberForLink(currentDay)
                 // Нажать "Получить ссылку-приглашение"
-                    .GetLink()
+                .GetLink()
                 // Зафиксировать ключ
-                    .SaveKeyLink();
-                // Выйти из аккаунта УК
-                SignUpPage signUpPage = houseCard
-                    .TopMenu
-                    .Exit()
+                .SaveKeyLink();
+            // Выйти из аккаунта УК
+            SignUpPage signUpPage = houseCard
+                .TopMenu
+                .Exit()
                 // Нажать "Зарегистрироваться"
-                    .OpenSignUp()
+                .OpenSignUp()
                 // Нажать зарегистрироваться
-                    .EmptySignUp();
-                // Проверить без ввода - ошибка
-                bool isEmptyKeyErrorPresent = signUpPage.IsEmptyKeyErrorPresent();
+                .EmptySignUp();
+            // Проверить без ввода - ошибка
+            bool isEmptyKeyErrorPresent = signUpPage.IsEmptyKeyErrorPresent();
 
-                if (!isEmptyKeyErrorPresent)
-                {
-                    Log.Error("Не появилась ошибка регистрации с пустым обязательным полем ключа");
-                }
-                else
-                {
-                    //  Ввести ключ
-                    signUpPage = signUpPage
-                        .inputKeyLink(keyLink)
-                    // Нажать зарегистрироваться
-                        .EmptySignUp();
-                    // Проверить появление ошибок регистрации
-                    bool isEmptyRequiredInfo = signUpPage.IsEmptyRequiredInfo();
 
-                    if (!isEmptyRequiredInfo)
-                    {
-                        Log.Error("Не появилась ошибка заполнения обязательного поля логина");
-                        Log.Error("Не появилась ошибка заполнения обязательного поля пароля");
-                        Log.Error("Не появилась ошибка заполнения обязательного поля email");
-                    }
-                    else
-                    {
-                        string currentDate = now.ToString("G");             //
-                        currentDate = currentDate.Replace('.', '_');        //  подготовка тестовых данных 
-                        currentDate = currentDate.Replace(' ', '_');        //  
-                        currentDate = currentDate.Replace(':', '_');        //
+            //  Ввести ключ
+            signUpPage = signUpPage
+                .inputKeyLink(keyLink)
+                // Нажать зарегистрироваться
+                .EmptySignUp();
+            // Проверить появление ошибок регистрации
+            bool isEmptyRequiredInfo = signUpPage.IsEmptyRequiredInfo();
 
-                        var newResident = new Account("login" + currentDate, "login" + currentDate,
-                            currentDate + "@houseceeper.com", currentDate, currentDate, currentDay, "");
+            string currentDate = now.ToString("G");             //
+            currentDate = currentDate.Replace('.', '_');        //  подготовка тестовых данных 
+            currentDate = currentDate.Replace(' ', '_');        //  
+            currentDate = currentDate.Replace(':', '_');        //
 
-                        // Заполнить поля, ввести ключ
-                        SignInPage signInPage = signUpPage
-                            .inputKeyLink(keyLink)
-                            .inputName(newResident)
-                            .inputLastName(newResident)
-                            .inputLogin(newResident)
-                            .inputEmail(newResident)
-                            .inputPassword(newResident)
-                            // Нажать зарегистрироваться
-                            .SignUp()
-                            // Выйти из аккаунта
-                            .TopMenu
-                            .Exit();
-                        // Ввести логин и пароль
-                        ProfilePage profile = signInPage
-                            .inputLogin(newResident)
-                            .inputPassword(newResident)
-                            .SignIn()
-                        // Проверить сохраненные данные
-                            .TopMenu
-                            .OpenProfile();
-                        string displayedName = profile.DisplayedName();
-                        string displayedLastName = profile.DisplayedLastName();
-                        string displayedLogin = profile.DisplayedLogin();
-                        string displayedHouse = profile.DisplayedHouse();
-                        string displayedFlat = profile.DisplayedFlat();
-                        Logging(displayedHouse, displayedLastName, displayedLogin, displayedName, houseData, newResident, displayedFlat);
-                    }
-                }
+            var newResident = new Account("login" + currentDate, "login" + currentDate,
+                currentDate + "@houseceeper.com", currentDate, currentDate, currentDay, "");
+
+            // Заполнить поля, ввести ключ
+            SignInPage signInPage = signUpPage
+                .inputKeyLink(keyLink)
+                .inputName(newResident)
+                .inputLastName(newResident)
+                .inputLogin(newResident)
+                .inputEmail(newResident)
+                .inputPassword(newResident)
+                // Нажать зарегистрироваться
+                .SignUp()
+                // Выйти из аккаунта
+                .TopMenu
+                .Exit();
+            // Ввести логин и пароль
+            ProfilePage profile = signInPage
+                .inputLogin(newResident)
+                .inputPassword(newResident)
+                .SignIn()
+                // Проверить сохраненные данные
+                .TopMenu
+                .OpenProfile();
+            string displayedName = profile.DisplayedName();
+            string displayedLastName = profile.DisplayedLastName();
+            string displayedLogin = profile.DisplayedLogin();
+            string displayedHouse = profile.DisplayedHouse();
+            string displayedFlat = profile.DisplayedFlat();
+            Logging(displayedHouse, displayedLastName, displayedLogin, displayedName, houseData, newResident, displayedFlat);
+
+            // Вывод ошибок результата негативных проверок в лог
+            if (!isGetErrorPresent)
+                Log.Error("Не появилась ошибка при получении ссылки-приглашения без ввода номера квартиры");
+
+            if (!isEmptyKeyErrorPresent)
+                Log.Error("Не появилась ошибка регистрации с пустым обязательным полем ключа");
+
+            if (!isEmptyRequiredInfo)
+            {
+                Log.Error("Не появилась ошибка заполнения обязательного поля логина");
+                Log.Error("Не появилась ошибка заполнения обязательного поля пароля");
+                Log.Error("Не появилась ошибка заполнения обязательного поля email");
             }
         }
     }

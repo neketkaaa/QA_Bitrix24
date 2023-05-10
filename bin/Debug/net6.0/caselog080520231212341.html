@@ -1,0 +1,36 @@
+<!DOCTYPE html><div style="color: #000000">[08.05.2023 12:12:34.202][INFO] ---------------Запуск кейса 'Публикация поста по заявке от жильца'---------------</div>
+<div style="color: #000000">[08.05.2023 12:12:34.203][INFO] OpenUri: http://bitrix.project/</div>
+<div style="color: #000000">[08.05.2023 12:12:37.700][INFO] Ожидание отображения элемента 'Поле для ввода логина' локаторы: //input[@name='login']</div>
+<div style="color: #000000">[08.05.2023 12:12:37.730][INFO] Ввод текста 'simple' в элемент: 'Поле для ввода логина' локаторы: //input[@name='login']</div>
+<div style="color: #000000">[08.05.2023 12:12:38.820][INFO] Ожидание отображения элемента 'Поле для ввода пароля' локаторы: //input[@name='password']</div>
+<div style="color: #000000">[08.05.2023 12:12:38.839][INFO] Ввод текста [логирование отключено] в элемент: 'Поле для ввода пароля' локаторы: //input[@name='password']</div>
+<div style="color: #000000">[08.05.2023 12:12:39.887][INFO] Ожидание отображения элемента 'Кнопка Авторизоваться' локаторы: //button[@type="submit"]</div>
+<div style="color: #000000">[08.05.2023 12:12:39.902][INFO] Ввод текста '' в элемент: 'Кнопка Авторизоваться' локаторы: //button[@type="submit"]</div>
+<div style="color: #000000">[08.05.2023 12:12:43.710][INFO] Ожидание отображения элемента 'Открытие страницы создания постов 'Добавить пост''' локаторы: //a[@href='/house/newtesthouse/add-post']</div>
+<div style="color: #000000">[08.05.2023 12:12:43.729][INFO] Click: 'Открытие страницы создания постов 'Добавить пост''' локаторы: //a[@href='/house/newtesthouse/add-post']</div>
+<div style="color: #000000">[08.05.2023 12:12:44.773][INFO] Ожидание отображения элемента 'Отправить заявку на публикацию' локаторы: //button[@type='submit']</div>
+<div style="color: #000000">[08.05.2023 12:12:44.797][INFO] Click: 'Отправить заявку на публикацию' локаторы: //button[@type='submit']</div>
+<div style="color: #000000">[08.05.2023 12:12:46.069][INFO] Ожидание обновления формы, содержащей ошибку</div>
+<div style="color: #000000">[08.05.2023 12:12:46.089][INFO] Значение аттрибута textContent='</div>
+<div style="color: #000000">Заголовок не должен быть пустым			'. Элемент: 'Область ошибки отправки поста с пустым заголовком' локаторы: //div[@class="notification is-warning"]</div>
+<div style="color: #000000">[08.05.2023 12:12:46.102][INFO] Значение аттрибута textContent='</div>
+<div style="color: #000000">Заголовок не должен быть пустым			'. Элемент: 'Область ошибки отправки поста с пустым заголовком' локаторы: //div[@class="notification is-warning"]</div>
+<div style="color: #000000">[08.05.2023 12:12:46.104][INFO] Ожидание отображения элемента 'Ввод заголовка поста' локаторы: //input[@name="post-caption"]</div>
+<div style="color: #000000">[08.05.2023 12:12:52.331][INFO] Достигнут таймаут ожидания</div>
+<div style="color: #000000">[08.05.2023 12:12:52.332][INFO] Ввод текста '08.05.2023 12:12:46' в элемент: 'Ввод заголовка поста' локаторы: //input[@name="post-caption"]</div>
+<div style="color: #FF0000">[08.05.2023 12:13:02.468][ERROR] Кейс не пройден, причина:</div>
+<div style="color: #FF0000">OpenQA.Selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//input[@name="post-caption"]"}</div>
+<div style="color: #FF0000">(Session info: chrome=112.0.5615.139)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.WebDriver.UnpackAndThrowOnError(Response errorResponse, String commandToExecute)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.WebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.WebDriver.FindElement(String mechanism, String value)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.By.<.ctor>b__11_0(ISearchContext context)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.By.FindElement(ISearchContext context)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.WebDriver.FindElement(By by)</div>
+<div style="color: #FF0000">at atFrameWork2.SeleniumFramework.WebItem.Execute(Action`2 seleniumCode, IWebDriver driver, Boolean throwAtDebug) in C:\Users\nikita\Desktop\qa bitrix\проектная работа\3 этап Автотесты\ATlearning\ATframework3demo\SeleniumFramework\WebItem.cs:line 298</div>
+<div style="color: #FF0000">at atFrameWork2.SeleniumFramework.WebItem.SendKeys(String textToInput, IWebDriver driver, Boolean logInputtedText) in C:\Users\nikita\Desktop\qa bitrix\проектная работа\3 этап Автотесты\ATlearning\ATframework3demo\SeleniumFramework\WebItem.cs:line 85</div>
+<div style="color: #FF0000">at ATframework3demo.PageObjects.EditPostCard.inputTitle(Post post) in C:\Users\nikita\Desktop\qa bitrix\проектная работа\3 этап Автотесты\ATlearning\ATframework3demo\PageObjects\EditPostCard.cs:line 31</div>
+<div style="color: #FF0000">at ATframework3demo.TestCases.Case_HouseCeeper_AddingPost.AddingPostByRequest(PortalHomePage homePage) in C:\Users\nikita\Desktop\qa bitrix\проектная работа\3 этап Автотесты\ATlearning\ATframework3demo\TestCases\Case_HouseCeeper_AddingPost.cs:line 65</div>
+<div style="color: #FF0000">at ATframework3demo.TestCases.Case_HouseCeeper_AddingPost.<GetCases>b__0_0(PortalHomePage homePage) in C:\Users\nikita\Desktop\qa bitrix\проектная работа\3 этап Автотесты\ATlearning\ATframework3demo\TestCases\Case_HouseCeeper_AddingPost.cs:line 16</div>
+<div style="color: #FF0000">at atFrameWork2.BaseFramework.TestCase.Execute(PortalInfo testPortal, Action uiRefresher) in C:\Users\nikita\Desktop\qa bitrix\проектная работа\3 этап Автотесты\ATlearning\ATframework3demo\BaseFramework\TestCase.cs:line 47</div>
+<div style="color: #000000">[08.05.2023 12:13:02.468][INFO] ---------------Кейс 'Публикация поста по заявке от жильца' завершён---------------</div>

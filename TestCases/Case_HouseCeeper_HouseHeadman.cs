@@ -45,12 +45,14 @@ namespace ATframework3demo.TestCases
                 .inputPassword(residentForAdmin)
                 .SignIn();
             // Нажать "О доме"
-            aboutHouse = news
+            bool transerError = news
                 .TopMenu
                 .OpenAboutHouse(house)
             // Проверить, что есть доступ к функционалу Председателя
-                .SetNumberForLink(residentForAdmin.FlatNum)
-                .GetLink();
+                .CheckTransferError();
+
+            if (transerError) Log.Error("При переходе на статус председателя, функционал председателя не передался");
+            else Log.Info("При переходе на статус председателя, функционал председателя передан");
         }
 
         void RemovingUserAdmin(PortalHomePage homePage)

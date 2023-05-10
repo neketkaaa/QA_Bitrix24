@@ -15,14 +15,8 @@ namespace atFrameWork2.PageObjects
         public SignInPage Exit()
         {
             // выход из аккаунта нажатием на соответствующую кнопку
-            var btnExit = new WebItem("//a[contains(@href, \"/logout\")]", "Кнопка выхода из аккаунта");
-            ClickMenuItem(btnExit);
+            new WebItem("//a[contains(@href, \"/logout\")]", "Кнопка выхода из аккаунта").Click();
             return new SignInPage();
-        }
-        private static void ClickMenuItem(WebItem menuItem)
-        {
-            var menuItemsArea = new WebItem("//div[@id=\"navbarBasicExample\"]", "Область с пунктами верхнего меню");
-            menuItem.Click();
         }
 
         public ProfilePage OpenProfile()
@@ -34,6 +28,7 @@ namespace atFrameWork2.PageObjects
 
         public EditPostCard OpenAddPost(House house)
         {
+            // переход на страницу добавления нового поста
             WebItem AddPostLink = new WebItem($"//a[@href='/house/{house.PathID}/add-post']", "Открытие страницы создания постов Добавить пост");
             if (AddPostLink.WaitElementDisplayed(10))
             {
@@ -45,18 +40,21 @@ namespace atFrameWork2.PageObjects
 
         public NewsLinePage OpenNewsLine(House house)
         {
+            // переход на страницу Лента
             new WebItem($"//a[@href='/house/{house.PathID}']", "Перейти к Ленте новостей").Click();
             return new NewsLinePage();
         }
 
         public DiscussionsListPage OpenDiscussions(House house)
         {
+            // переход на страницу Обсуждения
             new WebItem($"//a[@href='/house/{house.PathID}/discussions']", "Перейти к Ленте новостей").Click();
             return new DiscussionsListPage();
         }
 
         public AboutHousePage OpenAboutHouse(House house)
         {
+            // переход на страницу Объявления
             new WebItem($"//a[@href='/house/{house.PathID}/about']", "Перейти к странице О доме").Click();
             return new AboutHousePage();
         }

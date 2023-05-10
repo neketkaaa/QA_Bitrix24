@@ -7,10 +7,11 @@ namespace ATframework3demo.PageObjects
 {
     public class HouseList
     {
+        // ссылка на дом
         public static WebItem HouseLink(string houseTitle, string housePathID) =>
             new WebItem($"//a[@href='/house/{housePathID}/about']", $"Ссылка на дом {houseTitle}");
 
-        public AboutHousePage OpenEditor(TestEntities.House houseData)
+        public AboutHousePage OpenEditor(House houseData)
         {
             // открытие страницы информации о доме из списка домов
             HouseLink(houseData.Title, houseData.PathID).Click();
@@ -19,12 +20,14 @@ namespace ATframework3demo.PageObjects
 
         public AddHousePage AddNewHouse()
         {
-           new WebItem("//a[@href='/add-house']", "Добавить новый дом").Click();
+            // переход к странице добавления нового дома
+            new WebItem("//a[@href='/add-house']", "Добавить новый дом").Click();
            return new AddHousePage();
         }
 
         public NewsLinePage OpenHouse(House house)
         {
+            // открыть дом из списка домов
             WebItem HouseLink = new WebItem($"//a[@href='/house/{house.PathID}']", $"Ссылка на дом {house.Title}");
             if (HouseLink.WaitElementDisplayed(10))
             {

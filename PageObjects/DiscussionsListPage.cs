@@ -8,6 +8,7 @@ namespace ATframework3demo.PageObjects
     {
         public PostPage OpenPost(Post post)
         {
+            // открыть пост из списка обсуждений
             NewsLinePage.PostLink(post.Title).Click();
             return new PostPage();
         }

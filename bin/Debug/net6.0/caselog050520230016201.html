@@ -1,0 +1,30 @@
+<!DOCTYPE html><div style="color: #000000">[05.05.2023 12:16:20.578][INFO] ---------------Запуск кейса 'Добавление нового дома и его Председателя'---------------</div>
+<div style="color: #000000">[05.05.2023 12:16:20.580][INFO] OpenUri: http://bitrix.project/</div>
+<div style="color: #000000">[05.05.2023 12:16:23.272][INFO] Ожидание отображения элемента 'Поле для ввода логина' локаторы: //input[@name='login']</div>
+<div style="color: #000000">[05.05.2023 12:16:23.302][INFO] Ввод текста 'admin' в элемент: 'Поле для ввода логина' локаторы: //input[@name='login']</div>
+<div style="color: #000000">[05.05.2023 12:16:24.370][INFO] Ожидание отображения элемента 'Поле для ввода логина' локаторы: //input[@name='login']</div>
+<div style="color: #000000">[05.05.2023 12:16:24.383][INFO] Ввод текста '' в элемент: 'Поле для ввода логина' локаторы: //input[@name='login']</div>
+<div style="color: #000000">[05.05.2023 12:16:25.547][INFO] Ожидание отображения элемента 'Поле для ввода пароля' локаторы: //input[@name='password']</div>
+<div style="color: #000000">[05.05.2023 12:16:25.573][INFO] Ввод текста [логирование отключено] в элемент: 'Поле для ввода пароля' локаторы: //input[@name='password']</div>
+<div style="color: #000000">[05.05.2023 12:16:26.627][INFO] Ожидание отображения элемента 'Поле для ввода пароля' локаторы: //input[@name='password']</div>
+<div style="color: #000000">[05.05.2023 12:16:26.640][INFO] Ввод текста '' в элемент: 'Поле для ввода пароля' локаторы: //input[@name='password']</div>
+<div style="color: #000000">[05.05.2023 12:16:27.759][INFO] Ожидание отображения элемента 'Добавить новый дом' локаторы: //a[@href='/add-house']</div>
+<div style="color: #000000">[05.05.2023 12:16:34.037][INFO] Достигнут таймаут ожидания</div>
+<div style="color: #000000">[05.05.2023 12:16:34.039][INFO] Click: 'Добавить новый дом' локаторы: //a[@href='/add-house']</div>
+<div style="color: #FF0000">[05.05.2023 12:16:34.595][ERROR] Кейс не пройден, причина:</div>
+<div style="color: #FF0000">OpenQA.Selenium.WebDriverException: disconnected: received Inspector.detached event</div>
+<div style="color: #FF0000">(failed to check if window was closed: disconnected: unable to send message to renderer)</div>
+<div style="color: #FF0000">(Session info: chrome=112.0.5615.139)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.WebDriver.UnpackAndThrowOnError(Response errorResponse, String commandToExecute)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.WebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.WebDriver.FindElement(String mechanism, String value)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.By.<.ctor>b__11_0(ISearchContext context)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.By.FindElement(ISearchContext context)</div>
+<div style="color: #FF0000">at OpenQA.Selenium.WebDriver.FindElement(By by)</div>
+<div style="color: #FF0000">at atFrameWork2.SeleniumFramework.WebItem.Execute(Action`2 seleniumCode, IWebDriver driver, Boolean throwAtDebug) in C:\Users\nikita\Desktop\qa bitrix\autotest\BitrixQAautomationLearning2023-master\BitrixQAautomationLearning2023-master\ATlearning\ATframework3demo\SeleniumFramework\WebItem.cs:line 298</div>
+<div style="color: #FF0000">at atFrameWork2.SeleniumFramework.WebItem.Click(IWebDriver driver) in C:\Users\nikita\Desktop\qa bitrix\autotest\BitrixQAautomationLearning2023-master\BitrixQAautomationLearning2023-master\ATlearning\ATframework3demo\SeleniumFramework\WebItem.cs:line 50</div>
+<div style="color: #FF0000">at ATframework3demo.PageObjects.HouseList.AddNewHouse() in C:\Users\nikita\Desktop\qa bitrix\autotest\BitrixQAautomationLearning2023-master\BitrixQAautomationLearning2023-master\ATlearning\ATframework3demo\PageObjects\HouseList.cs:line 20</div>
+<div style="color: #FF0000">at ATframework3demo.TestCases.Case_HouseCeeper_CreatingNewHouse.CreatingNewHouseAndHouseAdmin(PortalHomePage homePage) in C:\Users\nikita\Desktop\qa bitrix\autotest\BitrixQAautomationLearning2023-master\BitrixQAautomationLearning2023-master\ATlearning\ATframework3demo\TestCases\Case_HouseCeeper_CreatingNewHouse.cs:line 35</div>
+<div style="color: #FF0000">at ATframework3demo.TestCases.Case_HouseCeeper_CreatingNewHouse.<GetCases>b__0_0(PortalHomePage homePage) in C:\Users\nikita\Desktop\qa bitrix\autotest\BitrixQAautomationLearning2023-master\BitrixQAautomationLearning2023-master\ATlearning\ATframework3demo\TestCases\Case_HouseCeeper_CreatingNewHouse.cs:line 18</div>
+<div style="color: #FF0000">at atFrameWork2.BaseFramework.TestCase.Execute(PortalInfo testPortal, Action uiRefresher) in C:\Users\nikita\Desktop\qa bitrix\autotest\BitrixQAautomationLearning2023-master\BitrixQAautomationLearning2023-master\ATlearning\ATframework3demo\BaseFramework\TestCase.cs:line 47</div>
+<div style="color: #000000">[05.05.2023 12:16:34.596][INFO] ---------------Кейс 'Добавление нового дома и его Председателя' завершён---------------</div>
