@@ -25,21 +25,66 @@ namespace ATframework3demo.TestCases
         {
             var residentForAdmin = new Account("zhilec", "zhilec", "", "imonly", "test", "7", "Житель");
             var house = new House("TESTHOUSENEW", "", "newtesthouse", 31, "test adress");
-            // Перейти к тестовому дому
-            // Нажать "О доме"
+            HouseList houses = new HouseList();
+            // Перейти к странице "О доме"
+            AboutHousePage aboutHouse = houses
+                .OpenEditor(house)
             // Найти тестового пользователя со статусом жильца
+                .FindResident(residentForAdmin)
             // Сделать пользователя председателем
+                .MakeAdmin(residentForAdmin);
             // Убедиться, что кнопка поменялась на другую
+            aboutHouse
+                .ButtonTextCheck(residentForAdmin, "Сделать жильцом", "make");
             // Выйти из аккаунта УК
+            NewsLinePage news = aboutHouse
+                .TopMenu
+                .Exit()
             // Авторизоваться от лица нового Председателя
+                .inputLogin(residentForAdmin)
+                .inputPassword(residentForAdmin)
+                .SignIn();
             // Нажать "О доме"
+            aboutHouse = news
+                .TopMenu
+                .OpenAboutHouse(house)
             // Проверить, что есть доступ к функционалу Председателя
+                .SetNumberForLink(residentForAdmin.FlatNum)
+                .GetLink();
         }
 
         void RemovingUserAdmin(PortalHomePage homePage)
         {
             var residentForKickAdmin = new Account("zhilec2", "zhilec2", "", "imonly", "test2", "8", "Председатель");
             var house = new House("TESTHOUSENEW", "", "newtesthouse", 31, "test adress");
+            HouseList houses = new HouseList();
+            // Перейти к странице "О доме"
+            AboutHousePage aboutHouse = houses
+                .OpenEditor(house)
+            // Найти тестового пользователя со статусом жильца
+                .FindResident(residentForKickAdmin)
+            // Снять полномочия председателя
+                .KickAdmin(residentForKickAdmin);
+            // Убедиться, что кнопка поменялась на другую
+            aboutHouse
+                .ButtonTextCheck(residentForKickAdmin, "Сделать председателем", "remove");
+            // Выйти из аккаунта УК
+            NewsLinePage news = aboutHouse
+                .TopMenu
+                .Exit()
+            // Авторизоваться от лица бывшего председателя
+                .inputLogin(residentForKickAdmin)
+                .inputPassword(residentForKickAdmin)
+                .SignIn();
+            // Нажать "О доме"
+            bool transerError = news
+                .TopMenu
+                .OpenAboutHouse(house)
+            // Проверить, что нет доступа к функционалу Председателя
+                .CheckTransferError();
+
+            if (transerError) Log.Info("При переходе на статус жильца, функционал Председателя не остался");
+            else Log.Error("При переходе на статус жильца, функционал Председателя остался, хотя должен пропасть");
         }
     }
 }

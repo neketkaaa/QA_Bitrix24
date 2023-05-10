@@ -1,4 +1,5 @@
-﻿using atFrameWork2.SeleniumFramework;
+﻿using atFrameWork2.BaseFramework.LogTools;
+using atFrameWork2.SeleniumFramework;
 using atFrameWork2.TestEntities;
 using ATframework3demo.PageObjects;
 using ATframework3demo.TestEntities;
@@ -14,7 +15,7 @@ namespace atFrameWork2.PageObjects
         public SignInPage Exit()
         {
             // выход из аккаунта нажатием на соответствующую кнопку
-            var btnExit = new WebItem("//a[@href='/logout']", "Кнопка выхода из аккаунта");
+            var btnExit = new WebItem("//a[contains(@href, \"/logout\")]", "Кнопка выхода из аккаунта");
             ClickMenuItem(btnExit);
             return new SignInPage();
         }
@@ -31,13 +32,18 @@ namespace atFrameWork2.PageObjects
             return new ProfilePage();
         }
 
-        public EditPostCard OpenAddPost()
+        public EditPostCard OpenAddPost(House house)
         {
-            new WebItem("//a[@href='/house/newtesthouse/add-post']", "Открытие страницы создания постов 'Добавить пост''").Click();
+            WebItem AddPostLink = new WebItem($"//a[@href='/house/{house.PathID}/add-post']", "Открытие страницы создания постов Добавить пост");
+            if (AddPostLink.WaitElementDisplayed(10))
+            {
+                AddPostLink.Click();
+            }
+            else Log.Error($"Не найдено: Кнопка добавить пост");
             return new EditPostCard();
         }
 
-         public NewsLinePage OpenNewsLine(House house)
+        public NewsLinePage OpenNewsLine(House house)
         {
             new WebItem($"//a[@href='/house/{house.PathID}']", "Перейти к Ленте новостей").Click();
             return new NewsLinePage();

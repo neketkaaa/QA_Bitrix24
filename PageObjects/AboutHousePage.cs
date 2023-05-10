@@ -1,6 +1,8 @@
 ﻿using atFrameWork2.BaseFramework;
+using atFrameWork2.BaseFramework.LogTools;
 using atFrameWork2.PageObjects;
 using atFrameWork2.SeleniumFramework;
+using atFrameWork2.TestEntities;
 using ATframework3demo.TestEntities;
 
 namespace ATframework3demo.PageObjects
@@ -80,5 +82,59 @@ namespace ATframework3demo.PageObjects
             return address;
         }
 
+        public AboutHousePage FindResident(Account residentForAdmin)
+        {
+            int listUsersPage = int.Parse(residentForAdmin.FlatNum) / 10;
+            var gridArea = new WebItem("//div[@class=\"main-grid main-grid-full\"]", "Область грида со списком жильцов");
+            if (gridArea.WaitElementDisplayed(10))
+            {
+                gridArea.Hover();
+                if (listUsersPage > 1)
+                    new WebItem("//a[contains(@href, 'list=page-2')]", "Навигация по гриду с жильцами").Click();
+            }
+            else Log.Error("Грид по списком жильцов не появился");
+            return new AboutHousePage();
+        }
+
+        public AboutHousePage MakeAdmin(Account residentForAdmin)
+        {
+            new WebItem($"//*[contains(text(), '{residentForAdmin.Name + " " + residentForAdmin.LastName}')]//..//a[contains(@href, \"add-headman\")]", 
+                "Клик по кнопке Сделать председателем").Click();
+            return new AboutHousePage();
+        }
+
+        public void ButtonTextCheck(Account resident, string expectedText, string todo)
+        {
+            string btnTxt = "";
+
+            if (todo == "make")
+            {
+                btnTxt = new WebItem($"//*[contains(text(), '{resident.Name + " " + resident.LastName}')]//..//a[contains(@href, \"delete-headman\")]",
+                "Кнопка снятия полномочий председателя").InnerText();
+                if (btnTxt.Contains("Сделать жильцом")) Log.Info($"Кнопка изменилась на {expectedText}");
+            }
+
+            if (todo == "remove")
+            {
+                btnTxt = new WebItem($"//*[contains(text(), '{resident.Name + " " + resident.LastName}')]//..//a[contains(@href, \"add-headman\")]",
+                "Кнопка выдачи полномочий председателя").InnerText();
+                if (btnTxt.Contains("Сделать председателем")) Log.Info($"Кнопка изменилась на {expectedText}");
+            }
+
+        }
+
+        public AboutHousePage KickAdmin(Account residentForKickAdmin)
+        {
+            new WebItem($"//*[contains(text(), '{residentForKickAdmin.Name + " " + residentForKickAdmin.LastName}')]//..//a[contains(@href, \"delete-headman\")]",
+                "Клик по кнопке Сделать жильцом").Click();
+            return new AboutHousePage();
+        }
+
+        public bool CheckTransferError()
+        {
+            if (new WebItem("//input[@id=\"get-link\"]", "Ссылка приглашение").WaitElementDisplayed())
+                return false; 
+            else return true;
+        }
     }
 }

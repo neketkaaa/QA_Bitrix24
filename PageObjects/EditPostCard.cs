@@ -43,5 +43,17 @@ namespace ATframework3demo.PageObjects
             new WebItem("//button[@type='submit']", "Отправить заявку на публикацию").Click();
             return new NewsLinePage();
         }
+
+        public EditPostCard inputType(Post post)
+        {
+            if (post.Type == "Обсуждение") new WebItem("//input[@value=\"discussion\"]", "Выбор типа поста Обсуждение").Click();
+            if (post.Type == "Объявление") new WebItem("//input[@value=\"announcement\"]", "Выбор типа поста Объявление").Click();
+            return new EditPostCard();  
+        }
+        public NewsLinePage AddPost()
+        {
+            new WebItem("//button[@type='submit']", "Отправить заявку на публикацию").Click();
+            return new NewsLinePage();
+        }
     }
 }

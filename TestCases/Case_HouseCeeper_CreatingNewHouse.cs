@@ -44,7 +44,8 @@ namespace ATframework3demo.TestCases
             currentDate = currentDate.Replace(".", "");
             currentDate = currentDate.Replace(" ", "");
             currentDate = currentDate.Replace(":", "");
-            string today = now.ToString("dd").Replace("0", "");
+            string today = now.ToString("dd");
+            if (today[0] == '0') today = today.Remove('0');
             House house = new House("Test"+currentDate, "", "test"+currentDate, 31, "test"+currentDate);
             Account resident = new Account("login"+currentDate, "login"+currentDate, currentDate+"@houseceeper.com",
                 "test"+today, "test" + today, today, "");

@@ -5,6 +5,7 @@ using ATframework3demo.PageObjects;
 using ATframework3demo.TestEntities;
 using atFrameWork2.TestEntities;
 using atFrameWork2.SeleniumFramework;
+using System;
 
 namespace ATframework3demo.TestCases
 {
@@ -14,9 +15,11 @@ namespace ATframework3demo.TestCases
         {
             var caseCollection = new List<TestCase>();
             caseCollection.Add(new TestCase("Публикация поста по заявке от жильца", homePage => AddingPostByRequest(homePage)));
+            caseCollection.Add(new TestCase("Публикация поста типа Обсуждение", homePage => AddingDiscussion(homePage)));
+            caseCollection.Add(new TestCase("Публикация поста типа Объявление", homePage => AddingAnnouncement(homePage)));
             return caseCollection;
         }
-        void Logging(PostPage postPage, Post post, Account simple)
+        void Logging(PostPage postPage, Post post, Account user)
         {
             string displayedTitle = postPage.DisplayedTitle("Обсуждение");
             string displayedDescription = postPage.DisplayedDescription();
@@ -32,10 +35,11 @@ namespace ATframework3demo.TestCases
             if (displayedType != post.Type) Log.Error($"Тип поста '{displayedType}' не совпал с ожидаемым '{post.Type}'");
             else Log.Info($"Тип поста '{displayedType}' совпал с ожидаемым '{post.Type}'");
 
-            if (displayedAuthor != simple.Name + " " + simple.LastName) 
-                Log.Error($"Имя автора поста '{displayedAuthor}' не совпало с ожидаемым '{simple.Name + " " + simple.LastName}'");
-            else 
-                Log.Info($"Имя автора поста '{displayedAuthor}' совпало с ожидаемым '{simple.Name + " " + simple.LastName}'");
+            if (displayedAuthor != user.Name + " " + user.LastName)
+                Log.Error($"Имя автора поста '{displayedAuthor}' не совпало с ожидаемым '{user.Name + " " + user.LastName}'");
+            else
+                Log.Info($"Имя автора поста '{displayedAuthor}' совпало с ожидаемым '{user.Name + " " + user.LastName}'");
+
         }
         void AddingPostByRequest(PortalHomePage homePage)
         {
@@ -47,7 +51,7 @@ namespace ATframework3demo.TestCases
             // Перейти к странице добавления поста
             EditPostCard editPostCard = news
                 .TopMenu
-                .OpenAddPost()
+                .OpenAddPost(houseData)
             // Нажать "Добавить пост"
                 .AddEmptyPost();
             // Проверить ошибку при незаполнении
@@ -95,6 +99,82 @@ namespace ATframework3demo.TestCases
                     .OpenPost(post);
                 Logging(postPage, post, simple);
             }
+        }
+
+        void AddingDiscussion(PortalHomePage homePage)
+        {
+            var house = new House("TESTHOUSENEW", "", "newtesthouse", 31, "test adress");
+            DateTime now = DateTime.Now;
+            string currentDate = now.ToString("G");
+            Post post = new Post(currentDate, currentDate, "Обсуждение");
+            var admin = new Account("admin", "adminadmin", "", "Управляющая", "Компания", "", "");
+
+            HouseList houseList = new HouseList();
+
+            var finalPostPage = houseList
+            // Переходим к тестовому дому
+                .OpenHouse(house)
+            // Переходим к странице создания поста
+                .TopMenu
+                .OpenAddPost(house)
+            // Ввод заголовка
+                .inputTitle(post)
+            // Ввод содержимого
+                .inputDescription(post)
+            // Выбор типа поста
+                .inputType(post)
+            // Добавляем пост
+                .AddPost()
+                .TopMenu
+            // Открываем ленту новостей
+                .OpenNewsLine(house)
+            // Переходим к тестовому посту
+                .OpenPost(post);
+            // Проверяем сохраненные данные
+            Logging(finalPostPage, post, admin);
+
+            // Проверить наличие функционала комментариев
+             bool checkComments = finalPostPage.CheckHaveComments();
+            if (!checkComments) Log.Error("На странице поста отсутствует раздел комментариев, хотя это должно быть для Обсуждений");
+            else Log.Info("На странице поста присутствует раздел комментариев, как и должно быть для постов типа Обсуждение");
+        }
+
+        void AddingAnnouncement(PortalHomePage homePage)
+        {
+            var house = new House("TESTHOUSENEW", "", "newtesthouse", 31, "test adress");
+            DateTime now = DateTime.Now;
+            string currentDate = now.ToString("G");
+            Post post = new Post(currentDate, currentDate, "Объявление");
+            var admin = new Account("admin", "adminadmin", "", "Управляющая", "Компания", "", "");
+
+            HouseList houseList = new HouseList();
+
+            var finalPostPage = houseList
+            // Переходим к тестовому дому
+                .OpenHouse(house)
+            // Переходим к странице создания поста
+                .TopMenu
+                .OpenAddPost(house)
+            // Ввод заголовка
+                .inputTitle(post)
+            // Ввод содержимого
+                .inputDescription(post)
+            // Выбор типа поста
+                .inputType(post)
+            // Добавляем пост
+                .AddPost()
+                .TopMenu
+            // Открываем ленту новостей
+                .OpenNewsLine(house)
+            // Переходим к тестовому посту
+                .OpenPost(post);
+            // Проверяем сохраненные данные
+            Logging(finalPostPage, post, admin);
+
+            // Проверить отсутствие функционала комментариев
+            bool checkComments = finalPostPage.CheckHaveComments();
+            if (checkComments) Log.Error("На странице поста есть раздел комментариев, а этого для Объявлений быть не должно");
+            else Log.Info("На странице поста отсутствует раздел комментирования, так как тип поста Объявление");
         }
     }
 }

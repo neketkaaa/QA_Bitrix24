@@ -2,6 +2,7 @@
 using atFrameWork2.PageObjects;
 using atFrameWork2.SeleniumFramework;
 using ATframework3demo.TestEntities;
+using OpenQA.Selenium.DevTools.V108.Profiler;
 
 namespace ATframework3demo.PageObjects
 {
@@ -11,7 +12,7 @@ namespace ATframework3demo.PageObjects
 
         public PostPage ConfirmPost()
         {
-            new WebItem("//button[@class=\"button is-success\"]", "Подтвердить публикацию поста").Click();
+            new WebItem("//button[@class=\"button is-success \"]", "Подтвердить публикацию поста").Click();
             DriverActions.BrowserAlert(true);
             return new PostPage();
         }
@@ -49,6 +50,39 @@ namespace ATframework3demo.PageObjects
             author = author.Trim();
             author = author.Substring(author.IndexOf(":") + 2);
             return author;
+        }
+
+        public bool CheckHaveComments()
+        {
+            if (new WebItem("//h1[contains(text(), \"Комментарии\")]", "Раздел комментариев").WaitElementDisplayed())
+                return true;
+            else return false;
+        }
+
+        public PostPage AddComment()
+        {
+            new WebItem("//button[contains(text(), \"Отправить\")]", "Клик по кнопке отправки комментария").Click();
+            return new PostPage();
+        }
+
+        public bool IsAddEmptyCommentErrorPresent()
+        {
+            string expectedError = "Не заполнено обязательное поле \"CONTENT\"";
+            var errorArea = new WebItem("//div[@class=\"notification is-warning\"]", "Область вывода ошибки пустого комментария").InnerText();
+            if (errorArea.Contains(expectedError)) return true;
+            else return false;
+        }
+
+        public PostPage inputComment(Comment parentComment)
+        {
+            new WebItem("//textarea[@id=\"inputComment\"]", "Поле ввода комментария").SendKeys(parentComment.Text);
+            return new PostPage();
+        }
+
+        public PostPage AddReply()
+        {
+            new WebItem("//button[contains(@onclick, \"replyToComment\")]", "Кнопка добавления ответа к комментарию").Click();
+            return new PostPage();
         }
     }
 }

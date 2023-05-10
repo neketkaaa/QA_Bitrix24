@@ -39,9 +39,9 @@ namespace ATframework3demo.TestCases
         {
             var houseData = new House("TESTHOUSENEW", "", "newtesthouse", 31, "test adress"); // тестовый дом
             HouseList houseList = new HouseList();
-            DateTime now = DateTime.Now;                    //
-            string currentDay = now.ToString("dd");         // подготовка к генерации тестовых данных
-            currentDay = currentDay.Replace("0", "");       //
+            DateTime now = DateTime.Now;                                        //
+            string currentDay = now.ToString("dd");                              // подготовка к генерации тестовых данных
+            if (currentDay[0] == '0') currentDay = currentDay.Remove('0');       //
             // Перейти к Редактировать
             AboutHousePage houseCard = houseList
                 .OpenEditor(houseData);

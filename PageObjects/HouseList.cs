@@ -1,4 +1,5 @@
-﻿using atFrameWork2.SeleniumFramework;
+﻿using atFrameWork2.BaseFramework.LogTools;
+using atFrameWork2.SeleniumFramework;
 using atFrameWork2.TestEntities;
 using ATframework3demo.TestEntities;
 
@@ -20,6 +21,17 @@ namespace ATframework3demo.PageObjects
         {
            new WebItem("//a[@href='/add-house']", "Добавить новый дом").Click();
            return new AddHousePage();
+        }
+
+        public NewsLinePage OpenHouse(House house)
+        {
+            WebItem HouseLink = new WebItem($"//a[@href='/house/{house.PathID}']", $"Ссылка на дом {house.Title}");
+            if (HouseLink.WaitElementDisplayed(10))
+            {
+                HouseLink.Click();
+            }
+            else Log.Error($"Не найдено: Дом {house.PathID} - {house.Title} не найден");
+            return new NewsLinePage();
         }
     }
 }
